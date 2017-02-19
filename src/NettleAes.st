@@ -13,13 +13,13 @@ Object subclass: NettleAes [
 	NettleAes class >> aes_set_encrypt_key: ctx length: length key: key [
 		<cCall: 'nettle_aes_set_encrypt_key'
 				returning: #void
-				args: #(#cObject #int #string)>
+				args: #(#cObject #int #byteArray)>
 	]
 
 	NettleAes class >> aes_set_decrypt_key: ctx length: length key: key [
 		<cCall: 'nettle_aes_set_decrypt_key'
 				returning: #void
-				args: #(#cObject #int #string)>
+				args: #(#cObject #int #byteArray)>
 	]
 
 	NettleAes class >> aes_invert_key: ctx src: src [
@@ -31,12 +31,12 @@ Object subclass: NettleAes [
 	NettleAes class >> aes_encrypt: ctx length: length dst: dst src: src [
 		<cCall: 'nettle_aes_encrypt'
 				returning: #void
-				args: #(#cObject #int #stringOut #string)>
+				args: #(#cObject #int #cObject #byteArray)>
 	]
 
 	NettleAes class >> aes_decrypt: ctx length: length dst: dst src: src [
 		<cCall: 'nettle_aes_decrypt'
 				returning: #void
-				args: #(#cObject #int #stringOut #string)>
+				args: #(#cObject #int #cObject #byteArray)>
 	]
 ]
