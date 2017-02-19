@@ -13,7 +13,7 @@ TestCase subclass: NettleAesTest [
 		]
 	]
 
-	testAesEncryptDecrypt [
+	testAesEncrypt [
 		| ctx |
 
 		ctx := NettleAesCtx new.
@@ -26,6 +26,21 @@ TestCase subclass: NettleAesTest [
 
 			NettleAes aes_encrypt: ctx length: 16 dst: ciphertext src: cleartext.
 			NettleAes aes_invert_key: ctx src: ctx.
+
+			ciphertext = #[16 5 42 86 30 91 206 232 105 155 194 50 56 82 65 252]
+		]
+	]
+
+	testAesDecrypt [
+		| ctx |
+		ctx := NettleAesCtx new.
+		NettleAes aes_set_decrypt_key: ctx length: 16 key: ('ABCDABCDABCDABCD' asByteArray).
+
+		self should: [
+			| ciphertext cleartext |
+			ciphertext := #[16 5 42 86 30 91 206 232 105 155 194 50 56 82 65 252].
+			cleartext :=  'zzzzzzzzzzzzzzzz' asByteArray.
+
 			NettleAes aes_decrypt: ctx length: 16 dst: cleartext src: ciphertext.
 
 			'aaaaaaaabbbbbbbb' asByteArray = cleartext
