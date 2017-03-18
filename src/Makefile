@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-HASH = NettleRipeMd160.st NettleMd4.st NettleSha1.st NettleMd5.st
+HASH = NettleRipeMd160.st NettleMd4.st NettleSha1.st NettleMd5.st NettleSha2.st
 PRIVKEY = NettleAes.st NettleTwofish.st
 SOURCES = $(HASH) $(PRIVKEY) Nettle.st NettleBase64.st NettleCbc.st
 TESTS = $(wildcard tests/*.st)
