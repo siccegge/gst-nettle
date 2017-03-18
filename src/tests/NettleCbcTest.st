@@ -2,8 +2,8 @@ TestCase subclass: NettleCbcTest [
 	testEncrypt [
 		| ctx |
 
-		ctx := NettleAesCtx new.
-		NettleAes aes_set_encrypt_key: ctx length: 16 key: ('ABCDABCDABCDABCD' asByteArray).
+		ctx := NettleAes new.
+		ctx set_encrypt_key: ('ABCDABCDABCDABCD' asByteArray).
 
 		self should: [
 			| ciphertext |
@@ -11,9 +11,9 @@ TestCase subclass: NettleCbcTest [
 
 			NettleCbc cbc_encrypt: ctx
 					  func: (CCallbackDescriptor
-							   for: [ :ctx :length :dst :src | NettleAes aes_encrypt: ctx length: length dst: dst src: src ]
+							   for: [ :ctx :length :dst :src | ctx nettle_encrypt: length dst: dst src: src ]
 							   returning: #void
-							   withArgs: #(#cObject #int #cObject #string))
+							   withArgs: #(#{NettleAes} #int #cObject #string))
 					  blocksize: 16
 					  iv: #[3 2 1 3 2 1 3 2 1 3 2 1 3 2 1 3]
 					  length: 32
@@ -27,8 +27,8 @@ TestCase subclass: NettleCbcTest [
 	testDecrypt [
 		| ctx |
 
-		ctx := NettleAesCtx new.
-		NettleAes aes_set_decrypt_key: ctx length: 16 key: ('ABCDABCDABCDABCD' asByteArray).
+		ctx := NettleAes new.
+		ctx set_decrypt_key: ('ABCDABCDABCDABCD' asByteArray).
 
 		self should: [
 			| cleartext |
@@ -36,9 +36,9 @@ TestCase subclass: NettleCbcTest [
 
 			NettleCbc cbc_decrypt: ctx
 					  func: (CCallbackDescriptor
-							   for: [ :ctx :length :dst :src | NettleAes aes_decrypt: ctx length: length dst: dst src: src ]
+							   for: [ :ctx :length :dst :src | ctx nettle_decrypt: length dst: dst src: src ]
 							   returning: #void
-							   withArgs: #(#cObject #int #cObject #string))
+							   withArgs: #(#{NettleAes} #int #cObject #string))
 					  blocksize: 16
 					  iv: #[3 2 1 3 2 1 3 2 1 3 2 1 3 2 1 3]
 					  length: 32
