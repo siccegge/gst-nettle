@@ -1,6 +1,8 @@
 DLD addLibrary: 'libnettle.so.4'.
 
-CStruct subclass: NettleSha1Ctx [
+CStruct subclass: NettleSha1 [
+	<category: 'Nettle-C SHA1 interface'>
+
 	<declaration: #(
 		(#state (#array #uInt 5))
 		(#count_low #uLong)
@@ -8,26 +10,33 @@ CStruct subclass: NettleSha1Ctx [
 		(#block (#array #uChar 64))
 		(#index #uLong)
 	)>
-]
 
-Object subclass: NettleSha1 [
-	<category: 'Nettle-C SHA1 interface'>
-
-	NettleSha1 class >> sha1_init: ctx [
+	init [
 		<cCall: 'nettle_sha1_init'
 				returning: #void
-				args: #(#cObject)>
+				args: #(#self)>
 	]
 
-	NettleSha1 class >> sha1_update: ctx length: length data: data [
+	sha1_update: length data: data [
 		<cCall: 'nettle_sha1_update'
 				returning: #void
-				args: #(#cObject #uInt #byteArray)>
+				args: #(#self #uInt #byteArray)>
 	]
 
-	NettleSha1 class >> sha1_digest: ctx length: length digest: digest [
+	sha1_digest: length digest: digest [
 		<cCall: 'nettle_sha1_digest'
 				returning: #void
-				args: #(#cObject #uInt #cObject)>
+				args: #(#self #uInt #cObject)>
+	]
+
+	update: data [
+		self sha1_update: (data size) data: data.
+	]
+
+	digest [
+		| result |
+		result := ByteArray new: 20.
+		self sha1_digest: 20 digest: result.
+		^result
 	]
 ]

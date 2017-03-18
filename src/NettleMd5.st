@@ -1,6 +1,8 @@
 DLD addLibrary: 'libnettle.so.4'.
 
-CStruct subclass: NettleMd5Ctx [
+CStruct subclass: NettleMd5 [
+	<category: 'Nettle-C MD5 interface'>
+
 	<declaration: #(
 		(#state (#array #uInt 4))
 		(#count_low #uLong)
@@ -8,26 +10,35 @@ CStruct subclass: NettleMd5Ctx [
 		(#block (#array #uChar 64))
 		(#index #uLong)
 	)>
-]
 
-Object subclass: NettleMd5 [
-	<category: 'Nettle-C MD5 interface'>
-
-	NettleMd5 class >> md5_init: ctx [
+	init [
 		<cCall: 'nettle_md5_init'
 				returning: #void
-				args: #(#cObject)>
+				args: #(#self)>
 	]
 
-	NettleMd5 class >> md5_update: ctx length: length data: data [
+	md5_update: length data: data [
 		<cCall: 'nettle_md5_update'
 				returning: #void
-				args: #(#cObject #uInt #byteArray)>
+				args: #(#self #uInt #byteArray)>
 	]
 
-	NettleMd5 class >> md5_digest: ctx length: length digest: digest [
+	md5_digest: length digest: digest [
 		<cCall: 'nettle_md5_digest'
 				returning: #void
-				args: #(#cObject #uInt #cObject)>
+				args: #(#self #uInt #cObject)>
 	]
+
+
+	update: data [
+		self md5_update: (data size) data: data.
+	]
+
+	digest [
+		| result |
+		result := ByteArray new: 16.
+		self md5_digest: 16 digest: result.
+		^result
+	]
+
 ]

@@ -16,9 +16,7 @@ TestCase subclass: NettleMd4Test [
 		ctx init.
 
 		self should: [
-			| digest |
-			digest := ctx digest.
-			digest = #[49 214 207 224 209 106 233 49 183 60 89 215 224 192 137 192]
+			ctx digest = #[49 214 207 224 209 106 233 49 183 60 89 215 224 192 137 192]
 		]
 	]
 
@@ -29,11 +27,8 @@ TestCase subclass: NettleMd4Test [
 		ctx init.
 
 		self should: [
-			| digest |
 			ctx update: ('Hallo' asByteArray).
-
-			digest := ctx digest.
-			digest = #[77 110 7 25 238 168 96 77 98 162 230 43 182 63 30 189]
+			ctx digest = #[77 110 7 25 238 168 96 77 98 162 230 43 182 63 30 189]
 		]
 	]
 
@@ -44,12 +39,8 @@ TestCase subclass: NettleMd4Test [
 		ctx init.
 
 		self should: [
-			| digest |
-
 			ctx update: ('On 16 November 1797, Goethe slept in Erlangen.' asByteArray).
-
-			digest := ctx digest.
-			digest = #[117 246 216 122 53 80 184 65 187 4 232 251 195 194 151 98]
+			ctx digest = #[117 246 216 122 53 80 184 65 187 4 232 251 195 194 151 98]
 		]
 	]
 
@@ -60,12 +51,9 @@ TestCase subclass: NettleMd4Test [
 		ctx init.
 
 		self should: [
-			| digest |
 			ctx update: ('On 16 November 1797, ' asByteArray).
 			ctx update: ('Goethe slept in Erlangen.' asByteArray).
-
-			digest := ctx digest.
-			digest = #[117 246 216 122 53 80 184 65 187 4 232 251 195 194 151 98]
+			ctx digest = #[117 246 216 122 53 80 184 65 187 4 232 251 195 194 151 98]
 		]
 	]
 ]
