@@ -5,8 +5,8 @@ CStruct subclass: NettleMd5 [
 
 	<declaration: #(
 		(#state (#array #uInt 4))
-		(#count_low #uLong)
-		(#count_high #uLong)
+		(#count_low #uInt)
+		(#count_high #uInt)
 		(#block (#array #uChar 64))
 		(#index #uLong)
 	)>
