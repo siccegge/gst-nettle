@@ -3,7 +3,7 @@ TestCase subclass: NettleSha1Test [
 		| ctx |
 
 		self should: [
-			ctx_en := NettleSha1Ctx new.
+			ctx := NettleSha1Ctx new.
 			NettleSha1 sha1_init: ctx.
 			true.
 		]
