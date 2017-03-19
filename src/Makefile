@@ -6,6 +6,8 @@ PRIVKEY = NettleSymmetricCipher.st NettleAes.st NettleTwofish.st
 SOURCES = $(HASH) $(MAC) $(PRIVKEY) Nettle.st NettleBase64.st NettleCbc.st
 TESTS = $(wildcard tests/*.st)
 
+build: $(SOURCES)
+	gst-remote $(patsubst %,-f %,$(SOURCES))
 
 check: $(SOURCES) $(TESTS)
 	gst-sunit $(patsubst %,-f %,$(SOURCES) $(TESTS)) $(patsubst tests/%.st,%,$(TESTS))
