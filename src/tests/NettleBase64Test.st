@@ -30,8 +30,6 @@ TestCase subclass: NettleBase64Test [
 		ctx := NettleBase64Decode new.
 		ctx init.
 		src := #[83 71 70 115 98 71 57 88 90 87 120 48].
-		dst := #[0 0 0 0 0 0 0 0 0].
-		dstlen := CInt gcValue: 9.
 
 		dst := ctx update: src.
 		self should: [ dst asString = 'HalloWelt'. ].
