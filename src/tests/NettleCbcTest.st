@@ -38,7 +38,6 @@ TestCase subclass: NettleCbcTest [
 	testTwofishEncrypt [
 		| ctx |
 
-		'goog' printNl.
 		ctx := NettleTwofish new.
 		ctx set_key: ('ABCDABCDABCDABCD' asByteArray).
 
@@ -57,10 +56,6 @@ TestCase subclass: NettleCbcTest [
 	testTwofishEncryptZeros [
 		| clear ctx |
 
-
-
-		'gnappl' printNl.
-
 		self should: [
 			0 to: 10 do: [ :x |
   				| cbc |
@@ -74,7 +69,6 @@ TestCase subclass: NettleCbcTest [
 				cbc context: ctx.
 
 				clear := cbc encrypt: #[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0].
-				clear printNl.
 			].
 			clear := #[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0].
 			0 to: 10000 do: [:x |
@@ -90,14 +84,12 @@ TestCase subclass: NettleCbcTest [
 
 				clear := cbc encrypt: clear.
 			].
-			clear printNl.
 			true.
 		]
 	]
 
 	testTwofishDecrypt [
 		| ctx |
-		'gnarf' printNl.
 
 		ctx := NettleTwofish new.
 		ctx set_key: ('ABCDABCDABCDABCD' asByteArray).
