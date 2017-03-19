@@ -92,7 +92,7 @@ CStruct subclass: NettleBase64Decode [
 	base64_decode_update: dstlen dst: dst srclen: srclen src: src [
 		<cCall: 'nettle_base64_decode_update'
 				returning: #uInt
-				args: #(#self (#ptr #uInt) #cObject #uInt #byteArray)>
+				args: #(#self (#ptr #uInt) #cObject #uInt #string)>
 	]
 
 	finalize [
