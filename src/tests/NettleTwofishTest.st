@@ -3,7 +3,7 @@ TestCase subclass: NettleTwofishTest [
 		| ctx |
 
 		self should: [
-			ctx := NettleTwofishCtx new.
+			ctx := NettleTwofish new.
 			ctx set_key: ('ABCDABCDABCDABCD' asByteArray).
 
 			true.
@@ -13,7 +13,7 @@ TestCase subclass: NettleTwofishTest [
 	testTwofishEncrypt [
 		| ctx |
 
-		ctx := NettleTwofishCtx new.
+		ctx := NettleTwofish new.
 		ctx set_key: ('ABCDABCDABCDABCD' asByteArray).
 
 		self should: [
@@ -25,7 +25,7 @@ TestCase subclass: NettleTwofishTest [
 
 	testTwofishDecrypt [
 		| ctx |
-		ctx := NettleTwofishCtx new.
+		ctx := NettleTwofish new.
 		ctx set_key: ('ABCDABCDABCDABCD' asByteArray).
 
 		self should: [
