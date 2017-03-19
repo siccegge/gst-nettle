@@ -2,7 +2,7 @@ DLD addLibrary: 'libnettle.so.4'.
 
 Object subclass: NettleCbc [
 	<category: 'Nettle-C CBC interface'>
-	| context iv |
+	| context iv blocksize |
 
 	iv [
 		^iv
@@ -17,12 +17,35 @@ Object subclass: NettleCbc [
 	]
 
 	context: aContext [
-		context := aContext
+		context := aContext.
+		blocksize := self blocksize.
+	]
+
+	pad: data [
+		| padlen padding |
+
+		padlen := blocksize - ((data size) rem: blocksize).
+		(padlen < blocksize) ifTrue: [
+			padding := ByteArray new: padlen.
+			^(data, padding)
+		] ifFalse: [
+			^data
+		]
 	]
 
 	encrypt: data [
+		^(self real_encrypt: (self pad: data))
 	]
+
 	decrypt: data [
+		^(self real_decrypt: (self pad: data))
+	]
+
+	real_encrypt: data [
+	]
+	real_decrypt: data [
+	]
+	blocksize [
 	]
 
 	NettleCbc class >> cbc_encrypt: ctx func: func blocksize: blocksize iv: iv length: length dst: dst src: src [
@@ -39,8 +62,9 @@ Object subclass: NettleCbc [
 ]
 
 NettleCbc subclass: NettleAesCbc [
+	blocksize [ ^16 ]
 
-	encrypt: data [
+	real_encrypt: data [
 		| size result |
 
 		size := data size.
@@ -59,7 +83,7 @@ NettleCbc subclass: NettleAesCbc [
 		^result
 	]
 
-	decrypt: data [
+	real_decrypt: data [
 		| size result |
 
 		size := data size.
@@ -81,8 +105,9 @@ NettleCbc subclass: NettleAesCbc [
 ]
 
 NettleCbc subclass: NettleTwofishCbc [
+	blocksize [ ^16 ]
 
-	encrypt: data [
+	real_encrypt: data [
 		| size result |
 
 		size := data size.
@@ -101,7 +126,7 @@ NettleCbc subclass: NettleTwofishCbc [
 		^result
 	]
 
-	decrypt: data [
+	real_decrypt: data [
 		| size result |
 
 		size := data size.
