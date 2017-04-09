@@ -49,7 +49,7 @@ CStruct subclass: NettleBase64Encode [
 	update: src [
 		| result encodesize |
 
-		encodesize := NettleBase64Encode base64_encode_length: (src size).
+		encodesize := NettleBase64Encode base64_encode_length: (1 + (src size)).
 		result := ByteArray new: encodesize.
 		self base64_encode_update: result length: (src size) src: src.
 		^(String fromCData: (result asCData)).
@@ -58,7 +58,7 @@ CStruct subclass: NettleBase64Encode [
 	finalize [
 		| result |
 
-		result := ByteArray new: 3.
+		result := ByteArray new: 4.
 		self base64_encode_final: result.
 		^(String fromCData: (result asCData)).
 	]
