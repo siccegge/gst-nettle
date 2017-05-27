@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 CStruct subclass: NettleSymmetricCipher [
 	nettle_encrypt: length dst: dst src: src [

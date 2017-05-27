@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 CStruct subclass: NettleRipeMd160 [
 	<category: 'Nettle-C RIPEMD160 interface'>

@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 CStruct subclass: NettleSha224 [
 	<category: 'Nettle-C SHA224 interface'>

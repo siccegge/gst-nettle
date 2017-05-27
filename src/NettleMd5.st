@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 CStruct subclass: NettleMd5 [
 	<category: 'Nettle-C MD5 interface'>

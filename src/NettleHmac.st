@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 CStruct subclass: NettleHmacSha1 [
 	<category: 'Nettle-C HMAC-SHA1 interface'>

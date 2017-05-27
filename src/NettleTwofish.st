@@ -1,4 +1,4 @@
-DLD addLibrary: 'libnettle.so.4'.
+DLD addLibrary: 'libnettle.so.6'.
 
 NettleSymmetricCipher subclass: NettleTwofish [
 	<category: 'Nettle-C TWOFISH interface'>
