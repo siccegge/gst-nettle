@@ -1,0 +1,38 @@
+<packages>
+  <package>
+	<name>Nettle</name>
+
+	<library>libnettle.so.6</library>
+
+	<test>
+	  <filein>tests/NettleAesTest.st</filein>
+	  <filein>tests/NettleBase64Test.st</filein>
+	  <filein>tests/NettleCbcTest.st</filein>
+	  <filein>tests/NettleHmacTest.st</filein>
+	  <filein>tests/NettleMd4Test.st</filein>
+	  <filein>tests/NettleMd5Test.st</filein>
+	  <filein>tests/NettleRipeMd160Test.st</filein>
+	  <filein>tests/NettleSha1Test.st</filein>
+	  <filein>tests/NettleSha2Test.st</filein>
+	  <filein>tests/NettleTwofishTest.st</filein>
+
+	  <sunit>
+		NettleAesTest NettleHmacTest NettleRipeMd160Test NettleCbcTest
+		NettleTwofishTest NettleSha1Test NettleMd5Test NettleSha2Test
+		NettleBase64Test NettleMd4Test
+	  </sunit>
+	</test>
+
+	<filein>NettleAes.st</filein>
+	<filein>NettleBase64.st</filein>
+	<filein>NettleCbc.st</filein>
+	<filein>NettleHmac.st</filein>
+	<filein>NettleMd4.st</filein>
+	<filein>NettleMd5.st</filein>
+	<filein>NettleRipeMd160.st</filein>
+	<filein>NettleSha1.st</filein>
+	<filein>NettleSha2.st</filein>
+	<filein>NettleSymmetricCipher.st</filein>
+	<filein>NettleTwofish.st</filein>
+  </package>
+</packages>
