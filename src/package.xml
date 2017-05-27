@@ -23,16 +23,16 @@
 	  </sunit>
 	</test>
 
+	<filein>NettleSymmetricCipher.st</filein>
 	<filein>NettleAes.st</filein>
 	<filein>NettleBase64.st</filein>
-	<filein>NettleCbc.st</filein>
-	<filein>NettleHmac.st</filein>
 	<filein>NettleMd4.st</filein>
 	<filein>NettleMd5.st</filein>
 	<filein>NettleRipeMd160.st</filein>
 	<filein>NettleSha1.st</filein>
 	<filein>NettleSha2.st</filein>
-	<filein>NettleSymmetricCipher.st</filein>
 	<filein>NettleTwofish.st</filein>
+	<filein>NettleCbc.st</filein>
+	<filein>NettleHmac.st</filein>
   </package>
 </packages>
